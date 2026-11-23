@@ -9,14 +9,16 @@ import {
   Menu,
   MessageSquareText,
   Mail,
+  Moon,
   Play,
   Sparkles,
+  Sun,
   Target,
   X,
   type LucideIcon,
 } from 'lucide-react'
 
-const navItems = ['Solutions', 'How It Works', 'Packages', 'Demo', 'FAQ', 'Contact']
+const navItems = ['Solutions', 'How It Works', 'Packages', 'Demo', 'FAQ']
 
 const featureCards: Array<{ icon: LucideIcon; title: string; description: string }> = [
   {
@@ -43,7 +45,7 @@ const featureCards: Array<{ icon: LucideIcon; title: string; description: string
 
 const workflowSteps = [
   { title: 'Lead capture', detail: 'Collect interested buyers and sellers from various channels.' },
-  { title: 'AI analysis', detail: 'AIg scores each inquiry by buying intent, lifestyle fit, and urgency.' },
+  { title: 'AI analysis', detail: 'AI scores each inquiry by buying intent, lifestyle fit, and urgency.' },
   { title: 'Smart routing', detail: 'The right agent gets the right lead at the right time with useful context attached.' },
   { title: 'Follow-up automation', detail: 'Keep conversations warm with scheduled reminders, personalized messages, and property suggestions.' },
 ]
@@ -51,29 +53,63 @@ const workflowSteps = [
 const packageTiers = [
   {
     name: 'Launch',
-    price: '₹19,999',
-    discount: '75% OFF',
-    discountedPrice: '₹4,999.75',
-    description: 'For growing real-estate teams ready to automate lead handling',
-    features: ['Lead capture setup', 'AI qualification & scoring', 'Personalized AI Response', 'CRM integration support', '1 Custom Integration'],
+    audience: 'Solo agents and new teams',
+    promise: 'Never miss a lead again.',
+    setupFee: 14999,
+    monthlyFee: 2999,
+    description: 'A practical starting point for capturing and responding to every inquiry.',
+    features: [
+      'AI lead capture, scoring & qualification',
+      'Personalized AI first response',
+      'Basic dashboard: lead list, score & status',
+      '1 automated follow-up sequence (3 touches)',
+      '1 user · 300 included leads/month',
+      'English · 1 live training session',
+      'Email support (48-hour response)',
+    ],
+    goLive: '7 days',
     highlighted: false,
   },
   {
     name: 'Growth',
-    price: '₹39,999',
-    discount: '75% OFF',
-    discountedPrice: '₹9,999.75',
-    description: 'For agencies that want consistent, conversion-driven lead orchestration',
-    features: ['Lead capture setup', 'AI qualification & scoring', 'Personalized AI Response', 'CRM integration support', 'Automated follow-ups', '2 Custom Integrations'],
+    audience: 'Small to mid-size brokerages (2–5 agents)',
+    promise: 'Never lose a lead to slow follow-up.',
+    setupFee: 29999,
+    monthlyFee: 4999,
+    description: 'More follow-up capacity and reporting for a growing brokerage.',
+    features: [
+      'AI lead capture, scoring & qualification',
+      'Personalized AI first response',
+      'Response-time & pipeline reports',
+      'Up to 3 automated follow-up sequences',
+      'Up to 10 users · 1,000 included leads/month',
+      'English + Hindi · 2 live training sessions',
+      '15-minute monthly check-in',
+      'WhatsApp support · 24 business-hour response',
+    ],
+    goLive: '10–14 days',
     highlighted: true,
   },
   {
     name: 'Scale',
-    price: '₹69,999',
-    discount: '70% OFF',
-    discountedPrice: '₹20,999.70',
-    description: 'For larger brokerages needing advanced automation and optimization',
-    features: ['Lead capture setup', 'AI qualification & scoring', 'Personalized AI Response', 'CRM integration support', 'Automated follow-ups', 'Property Matching Engine', 'Lead Routing System', '3 Custom Integrations'],
+    audience: 'Larger brokerages and developers running campaigns',
+    promise: 'Every lead matched, routed and followed up automatically.',
+    setupFee: 49999,
+    monthlyFee: 9999,
+    description: 'Advanced lead operations for larger teams and active campaigns.',
+    features: [
+      'AI lead capture, scoring & qualification',
+      'Personalized AI first response',
+      'Source-performance & team reports',
+      'Up to 5 custom sequences + 50 cold re-engagements',
+      'Property matching for up to 200 active listings',
+      'Round-robin or rule-based lead routing',
+      'Up to 25 users · 3,000 included leads/month',
+      'English + Hindi · 3 live training sessions',
+      '30-minute review, twice a month',
+      'Priority support · 8 business-hour response',
+    ],
+    goLive: '14–21 days',
     highlighted: false,
   },
 ]
@@ -85,20 +121,30 @@ const faqItems = [
       'This system is designed for real-estate agencies, brokerages, property consultants, and sales teams that want to convert more inbound interest without increasing manual admin work.',
   },
   {
-    question: 'Can it work with our current CRM?',
+    question: 'Do you integrate with our CRM and other tools?',
     answer:
-      'Yes. The automation layer is designed to connect with typical CRM and lead sources, including forms, websites, and business systems your team already uses.',
+      'Yes! We’ll confirm compatibility and the agreed integrations during scoping. If you have a custom system, we can discuss options for integration.',
   },
   {
-    question: 'How quickly can we launch?',
+    question: 'Will automated responses still feel personal?',
     answer:
-      'Most teams can move from audit to pilot within a few weeks, depending on the complexity of their lead flow, CRM setup, and workflow requirements.',
+      'The responses and follow-ups are personalized using the lead context and preferences available to the system. The exact information used and messaging approach are agreed during setup.',
   },
   {
-    question: 'Does it still feel personal to buyers?',
+    question: 'What happens if we exceed the included lead allowance?',
     answer:
-      'Yes. The system is built to personalize outreach using lead context, preferences, location, and intent, so follow-ups feel relevant rather than robotic.',
+      'Each package includes a monthly lead allowance. Any leads above that limit are billed separately under the agreed terms; we’ll confirm the applicable rate before work begins.',
   },
+  {
+    question: 'How long does setup take, and what is the minimum term?',
+    answer:
+      'Typical go-live estimates are 7 days for Launch, 10–14 days for Growth and 14–21 days for Scale, subject to the agreed scope and timely access to your systems. You can cancel anytime after the cimmitment period as per the contract.',
+  },
+  {
+    question: 'Who owns our lead data?',
+    answer:
+      'You own your lead data. EstateVia retains reusable components and templates used to deliver the service.',
+  }
 ]
 
 const stats = [
@@ -107,7 +153,12 @@ const stats = [
   { label: 'Support', value: '24/7' },
 ]
 
-function Navbar({ onBook }: { onBook: () => void }) {
+const formatPrice = (amount: number) => `₹${amount.toLocaleString('en-IN', {
+  minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+  maximumFractionDigits: 2,
+})}`
+
+function Navbar({ onBook, theme, onToggleTheme }: { onBook: () => void; theme: 'light' | 'dark'; onToggleTheme: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -135,8 +186,17 @@ function Navbar({ onBook }: { onBook: () => void }) {
         <div className="hidden items-center gap-3 md:flex">
           <button
             type="button"
+            onClick={onToggleTheme}
+            className="inline-flex h-10 w-10 items-center justify-center cursor-pointer rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:bg-white/10 hover:text-white"
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+            aria-pressed={theme === 'dark'}
+          >
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <button
+            type="button"
             onClick={onBook}
-            className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white transition hover:border-cyan-400/40 hover:bg-cyan-500/10"
+            className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm cursor-pointer font-medium text-white transition hover:border-cyan-400/40 hover:bg-cyan-500/10"
           >
             Book a Consultation
           </button>
@@ -165,6 +225,15 @@ function Navbar({ onBook }: { onBook: () => void }) {
                 {item}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5"
+              aria-pressed={theme === 'dark'}
+            >
+              {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+              Switch to {theme === 'light' ? 'dark' : 'light'} theme
+            </button>
             <button
               type="button"
               onClick={() => {
@@ -229,8 +298,18 @@ function HeroVisual() {
 
 function App() {
   const [selectedPackage, setSelectedPackage] = useState('')
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('monthly')
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => (
+    localStorage.getItem('estatevia-theme') === 'dark' ? 'dark' : 'light'
+  ))
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+
+  useEffect(() => {
+    localStorage.setItem('estatevia-theme', theme)
+    document.documentElement.style.colorScheme = theme
+    document.documentElement.dataset.theme = theme
+  }, [theme])
 
   const openConsultation = (packageName?: string) => {
     if (packageName) setSelectedPackage(packageName)
@@ -255,6 +334,7 @@ function App() {
         },
         body: JSON.stringify({
           ...fields,
+          billing_period: billingPeriod,
           _subject: 'New EstateVia consultation request',
           _template: 'table',
           _captcha: false,
@@ -280,10 +360,10 @@ function App() {
   }
 
   return (
-    <div id="top" className="min-h-screen bg-[#05070B] text-white">
+    <div id="top" data-theme={theme} className="min-h-screen bg-[#05070B] text-white">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_right,rgba(167,139,250,0.12),transparent_35%)]" />
 
-      <Navbar onBook={() => openConsultation()} />
+      <Navbar onBook={() => openConsultation()} theme={theme} onToggleTheme={() => setTheme((current) => current === 'light' ? 'dark' : 'light')} />
 
       <main className="relative">
         <section className="section-shell grid items-center gap-16 pb-20 pt-14 md:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24">
@@ -293,11 +373,11 @@ function App() {
               AI automation for real estate
             </div>
 
-            <h1 className="max-w-xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
-              Turn Real Estate Leads Into <span className="text-gradient">Sales Opportunities</span> Automatically.
+            <h1 className="max-w-xl text-5xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-4xl lg:text-6xl">
+              Every lead answered in <span className="text-gradient">seconds.</span> Every visit <span className="text-gradient">booked.</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+            <p className="mt-6 max-w-xl text-md leading-8 text-slate-200">
               Capture, qualify, score, follow up and manage property leads with an AI-powered sales automation system built specifically for real-estate teams.
             </p>
 
@@ -305,7 +385,7 @@ function App() {
               <button
                 type="button"
                 onClick={() => openConsultation()}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.35)] transition hover:bg-cyan-300"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
               >
                 Book a Free Automation Audit
                 <ArrowRight size={16} />
@@ -393,19 +473,38 @@ function App() {
             <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">Choose the automation layer that matches your growth stage.</h2>
           </div>
 
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3" aria-label="Billing period">
+            <div className="inline-flex rounded-full border border-white/10 bg-white/[0.03] p-1" role="group" aria-label="Choose a service billing period">
+              <button
+                type="button"
+                onClick={() => setBillingPeriod('monthly')}
+                aria-pressed={billingPeriod === 'monthly'}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition ${billingPeriod === 'monthly' ? 'bg-cyan-400 text-slate-950' : 'text-slate-300 hover:text-white'}`}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                onClick={() => setBillingPeriod('annual')}
+                aria-pressed={billingPeriod === 'annual'}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition ${billingPeriod === 'annual' ? 'bg-cyan-400 text-slate-950' : 'text-slate-300 hover:text-white'}`}
+              >
+                Annual <span className="ml-1 text-xs">· 2 months free</span>
+              </button>
+            </div>
+          </div>
+
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {packageTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`rounded-[2rem] p-[1px] ${
-                  tier.highlighted
+                className={`rounded-[2rem] p-[1px] ${tier.highlighted
                     ? 'bg-gradient-to-br from-cyan-400 via-violet-400 to-indigo-500 shadow-[0_0_35px_rgba(96,165,250,0.35)]'
                     : 'bg-white/5'
-                }`}
+                  }`}
               >
                 <div
                   className="glass-panel flex h-full flex-col rounded-[calc(2rem-1px)] p-6 sm:p-7"
-                  style={tier.highlighted ? { backgroundColor: '#101b2a' } : undefined}
                 >
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="text-2xl font-semibold text-white">{tier.name}</h3>
@@ -415,17 +514,24 @@ function App() {
                       </span>
                     )}
                   </div>
-                  <div className="mt-5 flex flex-wrap items-center gap-2">
-                    <span className="text-4xl font-semibold tracking-[-0.06em] text-white">{tier.discountedPrice}</span>
-                    <span className="pb-1 text-sm text-slate-400">/ setup</span>
-                    <span className="rounded-full border border-rose-400/30 bg-rose-500/15 px-2.5 py-1 text-xs font-semibold text-rose-200">{tier.discount}</span>
-                  </div>
-                  <p className="mt-1 text-sm text-slate-400">
-                    <span className="sr-only">Original price </span>
-                    <s>{tier.price}</s>
-                  </p>
-                  <p className="mt-4 text-sm leading-7 text-slate-300">{tier.description}</p>
 
+
+                  <p className="mt-3 text-sm text-slate-300">{tier.audience}</p>
+                  <div className="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4">
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Setup</p>
+                    
+                    <p className="mt-1 text-2xl font-semibold text-white">{formatPrice(tier.setupFee / 2)}</p>
+                    <p className="mt-2 text-sm text-slate-400"><s>{formatPrice(tier.setupFee)}</s></p>
+                  </div>
+
+                  <div className="mt-5">
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-400">Ongoing service</p>
+                    <p className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-white">
+                      {billingPeriod === 'annual'
+                        ? `from ${formatPrice(tier.monthlyFee * 10)}/year`
+                        : `from ${formatPrice(tier.monthlyFee)}/month`}
+                    </p>
+                  </div>
                   <ul className="mt-6 flex-1 space-y-3 text-sm text-slate-200">
                     {tier.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
@@ -438,11 +544,10 @@ function App() {
                   <button
                     type="button"
                     onClick={() => openConsultation(tier.name)}
-                    className={`mt-7 inline-flex w-full items-center justify-center rounded-full px-4 py-3 text-sm font-semibold transition ${
-                      tier.highlighted
+                    className={`cursor-pointer mt-7 inline-flex w-full items-center justify-center rounded-full px-4 py-3 text-sm font-semibold transition ${tier.highlighted
                         ? 'bg-cyan-400 text-slate-950 hover:bg-cyan-300'
                         : 'border border-white/10 bg-white/[0.03] text-white hover:border-cyan-400/30 hover:bg-white/[0.06]'
-                    }`}
+                      }`}
                   >
                     Book a Consultation
                   </button>
@@ -451,8 +556,8 @@ function App() {
             ))}
           </div>
 
-          <p className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm leading-7 text-slate-300">
-            <strong className="text-white">Note:</strong> AI/API, WhatsApp, SMS, third-party CRM, hosting, and other usage-based charges should either be billed separately or included only up to a clearly defined monthly usage limit. Monthly charges may or may not apply; discuss this during purchase and confirm the appropriate quote.
+          <p className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-[12px] leading-7 text-slate-300">
+            <strong className="text-white">Pricing notes:</strong> Hosting, monitoring, support and included leads are covered by the service fee; AI/API, messaging, third-party subscriptions and excess leads are billed as agreed.
           </p>
         </section>
 
@@ -468,7 +573,7 @@ function App() {
                 <button
                   type="button"
                   onClick={() => window.open('https://estatevia-demo.netlify.app/', '_blank')}
-                  className="mt-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-100 hover:bg-cyan-500/15"
+                  className="cursor-pointer mt-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-100 hover:bg-cyan-500/15"
                 >
                   <Play size={16} className="fill-current" />
                   Walkthrough
@@ -498,7 +603,7 @@ function App() {
         </section>
 
         <section className="section-shell pb-24 pt-10">
-          <div className="rounded-[2rem] border border-cyan-400/20 bg-[linear-gradient(135deg,rgba(34,211,238,0.12),rgba(167,139,250,0.08),rgba(10,15,22,0.9))] p-8 sm:p-10">
+          <div className="final-cta rounded-[2rem] border border-cyan-400/20 bg-[linear-gradient(135deg,rgba(34,211,238,0.12),rgba(167,139,250,0.08),rgba(10,15,22,0.9))] p-8 sm:p-10">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.28em] text-cyan-200">Ready to automate</p>
@@ -562,12 +667,19 @@ function App() {
                     {packageTiers.map((tier) => <option key={tier.name} value={tier.name}>{tier.name}</option>)}
                   </select>
                 </label>
+                <label className="text-sm text-slate-200">
+                  Service billing
+                  <select name="billing_period" value={billingPeriod} onChange={(event) => setBillingPeriod(event.target.value === 'annual' ? 'annual' : 'monthly')} className="mt-2 w-full rounded-xl border border-white/10 bg-[#0b111b] px-4 py-3 text-white outline-none transition focus:border-cyan-400/50">
+                    <option value="monthly">Monthly</option>
+                    <option value="annual">Annual</option>
+                  </select>
+                </label>
               </div>
               <label className="mt-5 block text-sm text-slate-200">
                 How can we help?
                 <textarea name="message" rows={4} required className="mt-2 w-full resize-y rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/50" placeholder="Tell us about your current lead workflow..." />
               </label>
-              <button type="submit" disabled={isSubmitting} className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-wait disabled:opacity-60">
+              <button type="submit" disabled={isSubmitting} className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-wait disabled:opacity-60 cursor-pointer">
                 {isSubmitting ? 'Sending request…' : 'Request a consultation'}
                 {!isSubmitting && <ArrowRight size={16} />}
               </button>
@@ -590,7 +702,6 @@ function App() {
             <a href="#how-it-works" className="hover:text-white">How It Works</a>
             <a href="#packages" className="hover:text-white">Packages</a>
             <a href="#faq" className="hover:text-white">FAQ</a>
-            <a href="#contact" className="hover:text-white">Contact</a>
           </div>
           <div className="flex items-center gap-2">
             <Building2 size={16} className="text-cyan-300" />
