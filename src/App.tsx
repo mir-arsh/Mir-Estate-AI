@@ -255,7 +255,7 @@ function HeroVisual() {
   const pipeline = ['Lead enters', 'AI analyzes', 'Lead score', 'Personalized response', 'Follow-up', 'Sales team']
 
   return (
-    <div className="relative mx-auto max-w-xl">
+    <div className="hero-visual relative mx-auto max-w-xl">
       <div className="absolute inset-0 -z-10 rounded-[2rem] bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.22),transparent_55%)] blur-3xl" />
       <div className="glass-panel rounded-[2rem] p-5 sm:p-6">
         <div className="mb-6 flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
@@ -310,6 +310,43 @@ function App() {
     document.documentElement.style.colorScheme = theme
     document.documentElement.dataset.theme = theme
   }, [theme])
+
+  useEffect(() => {
+    if (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      !('IntersectionObserver' in window)
+    ) {
+      return
+    }
+
+    const sections = document.querySelectorAll<HTMLElement>('main section')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute('data-motion-visible', 'true')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
+    )
+
+    sections.forEach((section) => {
+      section.setAttribute('data-motion-reveal', 'true')
+      observer.observe(section)
+    })
+
+    document.documentElement.classList.add('motion-ready')
+    return () => {
+      observer.disconnect()
+      document.documentElement.classList.remove('motion-ready')
+      sections.forEach((section) => {
+        section.removeAttribute('data-motion-reveal')
+        section.removeAttribute('data-motion-visible')
+      })
+    }
+  }, [])
 
   const openConsultation = (packageName?: string) => {
     if (packageName) setSelectedPackage(packageName)
@@ -367,7 +404,7 @@ function App() {
 
       <main className="relative">
         <section className="section-shell grid items-center gap-16 pb-20 pt-14 md:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24">
-          <div>
+          <div className="hero-copy">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/5 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.3em] text-cyan-200">
               <Sparkles size={12} />
               AI automation for real estate
@@ -429,7 +466,7 @@ function App() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {featureCards.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="glass-panel rounded-[1.75rem] p-6">
+              <div key={title} className="feature-card glass-panel rounded-[1.75rem] p-6">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-500/10 text-cyan-200">
                   <Icon size={22} />
                 </div>
@@ -453,7 +490,7 @@ function App() {
 
           <div className="grid gap-5 lg:grid-cols-4">
             {workflowSteps.map((step, index) => (
-              <div key={step.title} className="glass-panel rounded-[1.75rem] p-6">
+              <div key={step.title} className="workflow-card glass-panel rounded-[1.75rem] p-6">
                 <div className="mb-5 flex items-center justify-between">
                   <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Step {index + 1}</span>
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-violet-500/10 text-sm font-semibold text-violet-200">
@@ -498,13 +535,13 @@ function App() {
             {packageTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`rounded-[2rem] p-[1px] ${tier.highlighted
+                className={`pricing-tier rounded-[2rem] p-[1px] ${tier.highlighted
                     ? 'bg-gradient-to-br from-cyan-400 via-violet-400 to-indigo-500 shadow-[0_0_35px_rgba(96,165,250,0.35)]'
                     : 'bg-white/5'
                   }`}
               >
                 <div
-                  className="glass-panel flex h-full flex-col rounded-[calc(2rem-1px)] p-6 sm:p-7"
+                  className="pricing-card glass-panel flex h-full flex-col rounded-[calc(2rem-1px)] p-6 sm:p-7"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="text-2xl font-semibold text-white">{tier.name}</h3>
