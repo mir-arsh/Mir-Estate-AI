@@ -143,7 +143,7 @@ const faqItems = [
   {
     question: 'Who owns our lead data?',
     answer:
-      'You own your lead data. EstateVia retains reusable components and templates used to deliver the service.',
+      'You own your lead data. Mir Estate AI retains reusable components and templates used to deliver the service.',
   }
 ]
 
@@ -171,8 +171,8 @@ function Navbar({ onBook, theme, onToggleTheme }: { onBook: () => void; theme: '
   return (
     <header className={`sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl transition-colors ${scrolled ? 'bg-[#05070B]/90' : 'bg-[#05070B]/80'}`}>
       <div className="section-shell flex h-20 items-center justify-between">
-        <a href="#top" className="text-lg font-semibold tracking-[0.08em] text-white" aria-label="EstateVia home">
-          EstateVia
+        <a href="#top" className="text-lg font-semibold tracking-[0.08em] text-white" aria-label="Mir Estate AI home">
+          Mir Estate AI
         </a>
 
         <nav className="hidden items-center gap-8 text-sm text-slate-300 md:flex">
@@ -372,7 +372,7 @@ function App() {
         body: JSON.stringify({
           ...fields,
           billing_period: billingPeriod,
-          _subject: 'New EstateVia consultation request',
+          _subject: 'New Mir Estate AI consultation request',
           _template: 'table',
           _captcha: false,
         }),
@@ -609,7 +609,7 @@ function App() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => window.open('https://estatevia-demo.netlify.app/', '_blank')}
+                  onClick={() => window.open('https://mirestateai-demo.netlify.app/', '_blank')}
                   className="cursor-pointer mt-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-3 text-sm font-semibold text-cyan-100 hover:bg-cyan-500/15"
                 >
                   <Play size={16} className="fill-current" />
@@ -733,7 +733,7 @@ function App() {
 
       <footer className="border-t border-white/10 bg-black/20">
         <div className="section-shell flex flex-col gap-5 py-8 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-          <span className="font-semibold tracking-[0.08em] text-white">EstateVia</span>
+          <span className="font-semibold tracking-[0.08em] text-white">Mir Estate AI</span>
           <div className="flex flex-wrap items-center gap-6">
             <a href="#solutions" className="hover:text-white">Solutions</a>
             <a href="#how-it-works" className="hover:text-white">How It Works</a>
